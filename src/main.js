@@ -293,10 +293,11 @@ document.getElementById('currentDate').textContent =
 
 (async () => {
   try {
-    const { latitude: lat, longitude: lon } = await (await fetch('https://ipapi.co/json/')).json();
-    if (!lat) return;
-    const { current: { temperature_2m: temp, weather_code: code } } =
-      await (await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code`)).json();
+    const geoRes = await fetch('https://geolocation-db.com/json/');
+    const { latitude: lat, longitude: lon } = await geoRes.json();
+    if (!lat || !lon) return;
+    const forecastRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code`);
+    const { current: { temperature_2m: temp, weather_code: code } } = await forecastRes.json();
     document.getElementById('weather').innerHTML = `${weatherImg(code)}${Math.round(temp)}°C`;
   } catch { /* silent */ }
 })();
