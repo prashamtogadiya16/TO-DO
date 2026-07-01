@@ -1,13 +1,13 @@
-import './style.css';
-import trashPng          from './assets/trash.png';
-import calendarPng       from './assets/calendar.png';
-import closePng          from './assets/close.png';
-import sunPng            from './assets/sun.png';
-import cloudPng          from './assets/cloud.png';
-import cloudDrizzlePng   from './assets/cloud-drizzle.png';
-import cloudRainPng      from './assets/cloud-rain.png';
-import cloudSnowPng      from './assets/cloud-snow.png';
-import cloudLightningPng from './assets/cloud-lightning.png';
+// Direct asset paths (no bundler imports)
+const TRASH_PNG = './src/assets/trash.png';
+const CAL_PNG = './src/assets/calendar.png';
+const CLOSE_PNG = './src/assets/close.png';
+const SUN_PNG = './src/assets/sun.png';
+const CLOUD_PNG = './src/assets/cloud.png';
+const CLOUD_DRIZZLE_PNG = './src/assets/cloud-drizzle.png';
+const CLOUD_RAIN_PNG = './src/assets/cloud-rain.png';
+const CLOUD_SNOW_PNG = './src/assets/cloud-snow.png';
+const CLOUD_LIGHTNING_PNG = './src/assets/cloud-lightning.png';
 
 const COLORS = ['#FFF6E7', '#E5FFE6', '#F3E4F7', '#EDBBB4', '#ECECEC'];
 const DARK_BG = new Set(['#525252', '#000000']);
@@ -23,17 +23,17 @@ let activeTab = 'all', sortOrder = 'oldest', searchQuery = '';
 const mkIcon = (src, size) =>
   `<img src="${src}" width="${size}" height="${size}" alt="" aria-hidden="true" style="display:block">`;
 
-const TRASH_SVG = mkIcon(trashPng,    15);
-const CAL_SVG   = mkIcon(calendarPng, 13);
-const CLOSE_SVG = mkIcon(closePng,    11);
+const TRASH_SVG = mkIcon(TRASH_PNG,    15);
+const CAL_SVG   = mkIcon(CAL_PNG, 13);
+const CLOSE_SVG = mkIcon(CLOSE_PNG,    11);
 
 function weatherImg(code) {
-  const src = code === 0 ? sunPng
-    : code <= 3  ? cloudPng
-    : code <= 48 ? cloudDrizzlePng
-    : code <= 67 ? cloudRainPng
-    : code <= 77 ? cloudSnowPng
-    : cloudLightningPng;
+  const src = code === 0 ? SUN_PNG
+    : code <= 3  ? CLOUD_PNG
+    : code <= 48 ? CLOUD_DRIZZLE_PNG
+    : code <= 67 ? CLOUD_RAIN_PNG
+    : code <= 77 ? CLOUD_SNOW_PNG
+    : CLOUD_LIGHTNING_PNG;
   return `<img src="${src}" width="16" height="16" alt="" aria-hidden="true" style="display:inline-block;vertical-align:middle;margin-right:4px">`;
 }
 
