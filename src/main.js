@@ -85,7 +85,8 @@ function buildCard({ title = '', date = '', dateISO = '', color, tasks = [] }) {
 
   // Date
   const dateDisplay = el('span', { className: 'date-display' + (date ? '' : ' placeholder'), textContent: date || 'Due to' });
-  const datePicker  = el('input', { type: 'date', className: 'date-picker' });
+  const datePicker  = el('input', { className: 'date-picker' });
+  datePicker.setAttribute('type', 'date');
   if (dateISO) datePicker.value = dateISO;
   const dateRow = el('div', { className: 'card-date', innerHTML: CAL_SVG });
   dateRow.append(dateDisplay, datePicker);
