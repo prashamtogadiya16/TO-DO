@@ -301,3 +301,44 @@ document.getElementById('currentDate').textContent =
     document.getElementById('weather').innerHTML = `${weatherImg(code)}${Math.round(temp)}°C`;
   } catch { /* silent */ }
 })();
+
+/* ── Initialize with dummy data ── */
+function initializeDummyCards() {
+  const todayISO = new Date().toISOString().split('T')[0];
+  const tomorrowISO = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+
+  // Card 1: Work Tasks
+  const card1 = buildCard({
+    title: 'Work Tasks',
+    dateISO: todayISO,
+    date: 'Today',
+    color: COLORS[0],
+    tasks: [
+      { text: 'Review pull requests', done: true },
+      { text: 'Update documentation', done: false },
+      { text: 'Team meeting at 2 PM', done: false },
+      { text: 'Fix bug in login module', done: true }
+    ]
+  });
+  grid.append(card1);
+
+  // Card 2: Personal Projects
+  const card2 = buildCard({
+    title: 'Personal Projects',
+    dateISO: tomorrowISO,
+    date: 'Tomorrow',
+    color: COLORS[1],
+    tasks: [
+      { text: 'Learn TypeScript', done: true },
+      { text: 'Build portfolio website', done: false },
+      { text: 'Read design patterns book', done: false },
+      { text: 'Create GitHub profile README', done: true }
+    ]
+  });
+  grid.append(card2);
+
+  colorIdx = 2;
+  checkEmptyState();
+}
+
+initializeDummyCards();
